@@ -35,7 +35,7 @@ keyPassword=<Filename>
 keyAlias=<AliasName>
 storeFile=./<Filename>.jks
 ```
-5. SHA1証明書フィンガープリントをfirebaseプロジェクトに登録
-`keytool -list -v -keystore <Filename> -alias <AliasName>`
+5. SHA 証明書フィンガープリントをfirebaseプロジェクトに登録
+`keytool -list -v -keystore ./path/to/<Filename>.jks -alias <AliasName>`
 
- example: `keytool -list -v -keystore key.jks -alias key`
+ example: `keytool -list -v -keystore ./android/app/key.jks -alias key`
