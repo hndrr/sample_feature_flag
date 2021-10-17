@@ -16,8 +16,8 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 # firebase 
-https://firebase.google.com/docs/flutter/setup?hl=ja&platform=ios
-https://firebase.google.com/docs/flutter/setup?hl=ja&platform=android
+- https://firebase.google.com/docs/flutter/setup?hl=ja&platform=ios
+- https://firebase.google.com/docs/flutter/setup?hl=ja&platform=android
 
 # android
 
