@@ -15,6 +15,10 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+# firebase 
+https://firebase.google.com/docs/flutter/setup?hl=ja&platform=ios
+https://firebase.google.com/docs/flutter/setup?hl=ja&platform=android
+
 # android
 
 1. keystore作成
@@ -39,3 +43,5 @@ storeFile=./<Filename>.jks
 `keytool -list -v -keystore ./path/to/<Filename>.jks -alias <AliasName>`
 
  example: `keytool -list -v -keystore ./android/app/key.jks -alias key`
+
+
