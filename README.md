@@ -19,7 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 
 1. keystore作成
   ```
-  keytool -genkey -v -alias <AliasName> -keystore <Filename>
+  keytool -genkey -v -alias <AliasName> -keystore <Filename>.jks
   ```
 
    example: `keytool -genkey -v -alias key -keystore key.jks`
@@ -35,4 +35,7 @@ keyPassword=<Filename>
 keyAlias=<AliasName>
 storeFile=./<Filename>.jks
 ```
-5. SHA1証明書フィンガープリント firebaseプロジェクトに登録
+5. SHA1証明書フィンガープリントをfirebaseプロジェクトに登録
+`keytool -list -v -keystore <Filename> -alias <AliasName>`
+
+ example: `keytool -list -v -keystore key.jks -alias key`
