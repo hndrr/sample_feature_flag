@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'about/about_page.dart';
+import 'contact/contact_page.dart';
 import 'store/store_list.dart';
 
 // ignore: use_key_in_widget_constructors
@@ -28,7 +29,7 @@ class _AppState extends State<App> {
     final _widgetList = <Widget>[
       const StoreListPage(),
       const AboutPage(),
-      const AboutPage(),
+      const ContactPage(),
     ];
 
     return MaterialApp(
@@ -38,8 +39,7 @@ class _AppState extends State<App> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.store_mall_directory), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person_search_rounded), label: 'About'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'About'),
             BottomNavigationBarItem(icon: Icon(Icons.mail), label: 'Contact'),
           ],
           currentIndex: _selectedIndex,

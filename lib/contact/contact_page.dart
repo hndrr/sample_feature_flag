@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:provider/provider.dart';
 import 'package:twemoji/twemoji.dart';
 
-import 'about_model.dart';
+import 'contact_model.dart';
 
-class AboutPage extends StatelessWidget {
-  const AboutPage({
+class ContactPage extends StatelessWidget {
+  const ContactPage({
     Key? key,
   }) : super(key: key);
 
@@ -15,15 +14,15 @@ class AboutPage extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final double width = MediaQuery.of(context).size.width;
 
-    return Consumer<AboutModel>(
+    return Consumer<ContactModel>(
       builder: (
         BuildContext context,
-        AboutModel model,
+        ContactModel model,
         Widget? child,
       ) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('About'),
+            title: const Text('Contact'),
             elevation: 2,
             backgroundColor: Colors.amberAccent,
             foregroundColor: Colors.black87,
@@ -45,15 +44,15 @@ class AboutPage extends StatelessWidget {
                     height: 180,
                     width: width,
                     child: const Twemoji(
-                      emoji: '👾',
+                      emoji: '📧',
                     )),
-                const Text('うんたら',
+                const Text('E-mail',
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 const SizedBox(
                   height: 20,
                 ),
                 const Text(
-                  'かんたら',
+                  'hoge@hogehoge.com',
                   textScaleFactor: 1,
                 ),
               ],

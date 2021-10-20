@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'about/about_model.dart';
 import 'app.dart';
+import 'contact/contact_model.dart';
 import 'store/store_model.dart';
 
 Future<void> main() async {
@@ -17,6 +18,9 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider<AboutModel>(
           create: (BuildContext context) => AboutModel(),
+        ),
+        ChangeNotifierProvider<ContactModel>(
+          create: (BuildContext context) => ContactModel(),
         ),
       ],
       child: App(),
