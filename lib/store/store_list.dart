@@ -86,7 +86,7 @@ class StoreListPage extends StatelessWidget {
                         textScaleFactor: 1,
                       ),
                       Text(
-                        '説明 : ${item.desc}',
+                        '価格 : ￥${item.price}',
                         textScaleFactor: 1,
                       ),
                     ],

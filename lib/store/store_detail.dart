@@ -96,7 +96,7 @@ class StoreDetailPage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '説明 : ${item.desc}',
+                            '価格 : ￥${item.price}',
                             textScaleFactor: 1,
                             maxLines: 1,
                             style: textTheme.subtitle1,

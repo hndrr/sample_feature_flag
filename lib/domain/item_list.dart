@@ -2,12 +2,12 @@ class Item {
   Item(
     this.emoji,
     this.title,
-    this.desc,
+    this.price,
   );
 
   String emoji;
 
   String title;
 
-  String desc;
+  int price;
 }
