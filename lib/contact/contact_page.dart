@@ -11,7 +11,6 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
     final double width = MediaQuery.of(context).size.width;
 
     return Consumer<ContactModel>(
