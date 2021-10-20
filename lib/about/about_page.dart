@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:provider/provider.dart';
 import 'package:twemoji/twemoji.dart';
 
@@ -12,7 +11,6 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
     final double width = MediaQuery.of(context).size.width;
 
     return Consumer<AboutModel>(
