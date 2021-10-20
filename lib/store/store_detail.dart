@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_feature_flag/domain/item_list.dart';
 import 'package:sample_feature_flag/store/store_model.dart';
+import 'package:twemoji/twemoji.dart';
 
 class StoreDetailPage extends StatelessWidget {
   const StoreDetailPage({
     Key? key,
-    required this.albumTitle,
+    required this.item,
   }) : super(key: key);
 
-  final String albumTitle;
+  final Item item;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class StoreDetailPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    backgroundColor: Colors.grey,
+                    backgroundColor: Colors.amberAccent,
                     pinned: true,
                     expandedHeight: 300,
                     floating: true,
@@ -59,36 +61,12 @@ class StoreDetailPage extends StatelessWidget {
                       background: Stack(
                         fit: StackFit.expand,
                         children: <Widget>[
-                          //   FutureBuilder<String>(
-                          //       future: model.getArtworkFilePath(
-                          //         ResourceType.ALBUM,
-                          //         musicInfo!,
-                          //       ),
-                          //       builder: (_, AsyncSnapshot<String> snapshot) {
-                          //         if (snapshot.data != null) {
-                          //           return CachedNetworkImage(
-                          //             imageUrl: snapshot.data!,
-                          //             fit: BoxFit.cover,
-                          //             placeholder:
-                          //                 (BuildContext context, String url) =>
-                          //                     const CircularProgressIndicator(),
-                          //             errorWidget: (BuildContext context,
-                          //                     String url, dynamic error) =>
-                          //                 Image.asset(
-                          //                     'assets/images/icon_1024.png',
-                          //                     fit: BoxFit.scaleDown),
-                          //           );
-                          //         } else {
-                          //           return Image.asset(
-                          //               'assets/images/icon_1024.png',
-                          //               fit: BoxFit.scaleDown);
-                          //         }
-                          //       })
-                          // else
-                          //   Image.file(
-                          //     File(musicInfo!.artworkUri!),
-                          //     fit: BoxFit.cover,
-                          //   )
+                          Container(
+                            margin: const EdgeInsets.symmetric(vertical: 100),
+                            child: Twemoji(
+                              emoji: item.emoji,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -110,7 +88,7 @@ class StoreDetailPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            '商品',
+                            '商品名 : ${item.title}',
                             textScaleFactor: 1,
                             maxLines: 2,
                             style: textTheme.headline5!.copyWith(
@@ -118,7 +96,7 @@ class StoreDetailPage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '説明書き',
+                            '説明 : ${item.desc}',
                             textScaleFactor: 1,
                             maxLines: 1,
                             style: textTheme.subtitle1,

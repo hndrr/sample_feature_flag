@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_feature_flag/store/store_detail.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
+import 'package:twemoji/twemoji.dart';
 
 import 'store_model.dart';
 
@@ -23,13 +24,12 @@ class StoreListPage extends StatelessWidget {
       ) {
         final double width = MediaQuery.of(context).size.width;
 
-        // final musicInfos =
-        //     artist == null ? model.viewList : model.viewArtistAlbumList;
-
         return Scaffold(
           appBar: AppBar(
-            title: const Text('FeatureFlagSample'),
+            title: const Text('商品リスト'),
             elevation: 2,
+            backgroundColor: Colors.amberAccent,
+            foregroundColor: Colors.black87,
           ),
           body:
               // musicInfos.isEmpty
@@ -50,72 +50,43 @@ class StoreListPage extends StatelessWidget {
                 .add(const EdgeInsets.only(top: 20, bottom: 20)),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              // mainAxisSpacing: 29,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
               childAspectRatio: width / (width + 180),
             ),
             cacheExtent: 10000,
             scrollDirection: Axis.vertical,
-            itemCount: 10,
+            itemCount: model.itemList.length,
             itemBuilder: (BuildContext context, int index) {
+              final item = model.itemList[index];
+
               return ScaleTap(
                 scaleMinValue: 0.99,
-                opacityMinValue: 0.8,
+                opacityMinValue: 0.6,
                 duration: const Duration(milliseconds: 200),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: Colors.amber,
+                    color: Colors.amberAccent,
                   ),
                   child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        height: 180,
-                        width: 180,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: <Widget>[
-                            //   FutureBuilder<String>(
-                            //       future: model.getArtworkFilePath(
-                            //         ResourceType.ALBUM,
-                            //         musicInfo,
-                            //       ),
-                            //       builder: (_, AsyncSnapshot<String> snapshot) {
-                            //         return snapshot.data != null
-                            //             ? CachedNetworkImage(
-                            //                 imageUrl: snapshot.data!,
-                            //                 fit: BoxFit.scaleDown,
-                            //                 errorWidget: (BuildContext context,
-                            //                         String url,
-                            //                         dynamic error) =>
-                            //                     Image.asset(
-                            //                         'assets/images/icon_1024.png',
-                            //                         fit: BoxFit.scaleDown),
-                            //               )
-                            //             : Image.asset(
-                            //                 'assets/images/icon_1024.png',
-                            //                 fit: BoxFit.scaleDown);
-                            //       })
-                            // else
-                            //   Image.file(
-                            //     File(musicInfo.artworkUri!),
-                            //     fit: BoxFit.scaleDown,
-                            //   ),
-                          ],
-                        ),
-                      ),
-                      const Text(
-                        '商品名',
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          height: 180,
+                          width: 100,
+                          child: Twemoji(
+                            emoji: item.emoji,
+                          )),
+                      Text(
+                        '商品名 : ${item.title}',
                         textScaleFactor: 1,
                       ),
-                      const Text(
-                        '説明書き',
+                      Text(
+                        '説明 : ${item.desc}',
                         textScaleFactor: 1,
                       ),
                     ],
@@ -124,8 +95,9 @@ class StoreListPage extends StatelessWidget {
                 onPressed: () async {
                   Navigator.of(context).push<dynamic>(
                     MaterialPageRoute<dynamic>(
-                      builder: (context) =>
-                          const StoreDetailPage(albumTitle: 'aaa'),
+                      builder: (context) => StoreDetailPage(
+                        item: item,
+                      ),
                     ),
                   );
                 },
