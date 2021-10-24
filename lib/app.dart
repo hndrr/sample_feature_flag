@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'about/about_page.dart';
 import 'contact/contact_page.dart';
@@ -29,25 +30,37 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    RemoteConfigRepository.value!.featInvisibleStoreTab;
+    const Locale locale = Locale('ja', 'JP');
+    RemoteConfigRepository.value!.featInvisibleTab;
 
     final _widgetList = <Widget>[
-      if (RemoteConfigRepository.value!.featInvisibleStoreTab == false)
-        const StoreListPage(),
-      const AboutPage(),
+      const StoreListPage(),
+      if (RemoteConfigRepository.value!.featInvisibleTab == false)
+        const AboutPage(),
       const ContactPage(),
     ];
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(),
+      locale: locale,
+      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const <Locale>[
+        locale,
+      ],
       home: Scaffold(
         body: _widgetList.elementAt(_selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
-            if (RemoteConfigRepository.value!.featInvisibleStoreTab == false)
-              const BottomNavigationBarItem(
-                  icon: Icon(Icons.store_mall_directory), label: 'Home'),
             const BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: 'About'),
+                icon: Icon(Icons.store_mall_directory), label: 'Home'),
+            if (RemoteConfigRepository.value!.featInvisibleTab == false)
+              const BottomNavigationBarItem(
+                  icon: Icon(Icons.person), label: 'About'),
             const BottomNavigationBarItem(
                 icon: Icon(Icons.mail), label: 'Contact'),
           ],
