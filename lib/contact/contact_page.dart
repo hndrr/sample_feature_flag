@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_feature_flag/domain/get_it_service.dart';
 import 'package:sample_feature_flag/domain/remote_config_repository.dart';
 import 'package:twemoji/twemoji.dart';
 
@@ -12,6 +13,7 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RemoteConfigRepository remoteConfig = getIt<RemoteConfigRepository>();
     final double width = MediaQuery.of(context).size.width;
 
     return Consumer<ContactModel>(
@@ -52,7 +54,7 @@ class ContactPage extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  RemoteConfigRepository.value!.featMailText!,
+                  remoteConfig.featMailText ?? '',
                   textScaleFactor: 1,
                 ),
               ],

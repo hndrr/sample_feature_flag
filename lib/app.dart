@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'about/about_page.dart';
 import 'contact/contact_page.dart';
+import 'domain/get_it_service.dart';
 import 'domain/remote_config_repository.dart';
 import 'store/store_list.dart';
 
@@ -14,7 +15,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  RemoteConfigRepository remoteConfig = RemoteConfigRepository();
+  RemoteConfigRepository remoteConfig = getIt<RemoteConfigRepository>();
   int _selectedIndex = 0;
 
   @override
@@ -31,12 +32,10 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     const Locale locale = Locale('ja', 'JP');
-    RemoteConfigRepository.value!.featInvisibleTab;
 
     final _widgetList = <Widget>[
       const StoreListPage(),
-      if (RemoteConfigRepository.value!.featInvisibleTab == false)
-        const AboutPage(),
+      if (remoteConfig.featInvisibleTab == false) const AboutPage(),
       const ContactPage(),
     ];
 
@@ -58,7 +57,7 @@ class _AppState extends State<App> {
           items: <BottomNavigationBarItem>[
             const BottomNavigationBarItem(
                 icon: Icon(Icons.store_mall_directory), label: 'Home'),
-            if (RemoteConfigRepository.value!.featInvisibleTab == false)
+            if (remoteConfig.featInvisibleTab == false)
               const BottomNavigationBarItem(
                   icon: Icon(Icons.person), label: 'About'),
             const BottomNavigationBarItem(

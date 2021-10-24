@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_feature_flag/domain/get_it_service.dart';
 import 'package:sample_feature_flag/domain/item_list.dart';
 import 'package:sample_feature_flag/domain/remote_config_repository.dart';
 import 'package:sample_feature_flag/store/store_model.dart';
@@ -15,6 +16,7 @@ class StoreDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RemoteConfigRepository remoteConfig = getIt<RemoteConfigRepository>();
     final TextTheme textTheme = Theme.of(context).textTheme;
 
     return Consumer<StoreModel>(builder: (
@@ -119,15 +121,11 @@ class StoreDetailPage extends StatelessWidget {
                       child: SizedBox(
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: item.id !=
-                                  RemoteConfigRepository
-                                      .value!.featDisablePurchase!
+                          onPressed: item.id != remoteConfig.featDisablePurchase
                               ? () {}
                               : null,
                           child: Text(
-                            item.id !=
-                                    RemoteConfigRepository
-                                        .value!.featDisablePurchase!
+                            item.id != remoteConfig.featDisablePurchase
                                 ? '購入'
                                 : '購入できません',
                           ),

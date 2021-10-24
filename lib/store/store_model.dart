@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:sample_feature_flag/domain/get_it_service.dart';
 import 'package:sample_feature_flag/domain/item_list.dart';
 import 'package:sample_feature_flag/domain/remote_config_repository.dart';
 
 class StoreModel extends ChangeNotifier {
+  static RemoteConfigRepository remoteConfig = getIt<RemoteConfigRepository>();
+
   bool isLoading = false;
   bool isPlaying = false;
 
@@ -25,16 +28,14 @@ class StoreModel extends ChangeNotifier {
     {'id': '1f', 'emoji': '🍜', 'title': 'ラーメン', 'price': '1000'},
     {'id': '1g', 'emoji': '🍔', 'title': 'ハンバーガー', 'price': '300'},
     {'id': '1h', 'emoji': '🥩', 'title': '肉', 'price': '4000'},
-    {'id': '1i', 'emoji': '😄', 'title': 'スマイル', 'price': '0'},
+    {'id': '1i', 'emoji': '🐟', 'title': '魚', 'price': '300'},
+    {'id': '1j', 'emoji': '😄', 'title': 'スマイル', 'price': '0'},
   ];
 
-  // RemoteConfigのJsonから合成
-  // static List<Map<String, dynamic>> featAddItem =
-  //     RemoteConfigRepository.value!.featAddItem!;
-  // static List<Map<String, dynamic>> jsonItemListPlusfeatAddItem =
-  //     jsonItemList + featAddItem;
+  // RemoteConfigのJson
+  static List<Map<String, dynamic>> featAddItem = remoteConfig.featAddItem!;
 
-  final List<Item> itemList = jsonItemList
+  final List<Item> itemList = jsonItemList // (jsonItemList + featAddItem)
       .map((item) => Item(
             item['id']!,
             item['emoji']!,
@@ -42,10 +43,7 @@ class StoreModel extends ChangeNotifier {
             int.parse(item['price']!),
           ))
       // RemoteConfigのJsonで指定したものを非表示
-      // .where((item) =>
-      //     item.id != RemoteConfigRepository.value!.featHiddenItem![0]["id"])
-      // .where((item) =>
-      //     item.emoji !=
-      //     RemoteConfigRepository.value!.featHiddenItem![1]["emoji"])
+      // .where((item) => item.id != remoteConfig.featHiddenItem![0]["id"])
+      // .where((item) => item.emoji != remoteConfig.featHiddenItem![1]["emoji"])
       .toList();
 }
