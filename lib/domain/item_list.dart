@@ -13,4 +13,6 @@ class Item {
   String title;
 
   int price;
+
+  toList() {}
 }

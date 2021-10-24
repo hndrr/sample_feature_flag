@@ -5,8 +5,9 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 class RemoteConfigRepository {
   static RemoteConfigRepository? value;
   bool? featInvisibleStoreTab;
-  String? featAboutText;
+  String? featMailText;
   List<Map<String, dynamic>>? featHiddenItem;
+  List<Map<String, dynamic>>? featAddItem;
 
   // Initialize
   static Future<void> init() async {
@@ -15,25 +16,29 @@ class RemoteConfigRepository {
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
       fetchTimeout: const Duration(seconds: 10),
       // 再取得のデフォルト値は12時間
-      minimumFetchInterval: const Duration(minutes: 1),
+      minimumFetchInterval: const Duration(milliseconds: 30),
     ));
 
-    // デフォルトの値
+    // アプリ内デフォルト値
     await remoteConfig.setDefaults(<String, dynamic>{
-      'feat_about_text': 'default welcome',
+      'feat_mail_text': 'hoge@hoge.com',
       'feat_disable_purchase': false,
       'feat_hidden_item': json.encode([{}]),
+      'featAddItem': json.encode([{}]),
     });
-
+    // remoteconfigからのfetchとactivateを行う
     await remoteConfig.fetchAndActivate();
     // bool
     value!.featInvisibleStoreTab =
         remoteConfig.getBool('feat_invisible_store_tab');
     // String
-    value!.featAboutText = remoteConfig.getString('feat_about_text');
+    value!.featMailText = remoteConfig.getString('feat_mail_text');
     // Json
     value!.featHiddenItem =
         jsonDecode(remoteConfig.getString('feat_hidden_item'))
             .cast<Map<String, dynamic>>();
+
+    value!.featAddItem = jsonDecode(remoteConfig.getString('feat_add_item'))
+        .cast<Map<String, dynamic>>();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_feature_flag/domain/item_list.dart';
 import 'package:sample_feature_flag/store/store_detail.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:twemoji/twemoji.dart';
@@ -22,6 +23,7 @@ class StoreListPage extends StatelessWidget {
         StoreModel model,
         Widget? child,
       ) {
+        final List<Item> itemList = model.itemList;
         final double width = MediaQuery.of(context).size.width;
 
         return Scaffold(
@@ -42,9 +44,9 @@ class StoreListPage extends StatelessWidget {
             ),
             cacheExtent: 10000,
             scrollDirection: Axis.vertical,
-            itemCount: model.itemList.length,
+            itemCount: itemList.length,
             itemBuilder: (BuildContext context, int index) {
-              final item = model.itemList[index];
+              final item = itemList[index];
 
               return ScaleTap(
                 scaleMinValue: 0.99,
