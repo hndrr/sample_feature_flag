@@ -29,10 +29,10 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    RemoteConfigRepository.featInvisibleStoreTab;
+    RemoteConfigRepository.value!.featInvisibleStoreTab;
 
     final _widgetList = <Widget>[
-      if (RemoteConfigRepository.featInvisibleStoreTab == false)
+      if (RemoteConfigRepository.value!.featInvisibleStoreTab == false)
         const StoreListPage(),
       const AboutPage(),
       const ContactPage(),
@@ -43,7 +43,7 @@ class _AppState extends State<App> {
         body: _widgetList.elementAt(_selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
-            if (RemoteConfigRepository.featInvisibleStoreTab == false)
+            if (RemoteConfigRepository.value!.featInvisibleStoreTab == false)
               const BottomNavigationBarItem(
                   icon: Icon(Icons.store_mall_directory), label: 'Home'),
             const BottomNavigationBarItem(

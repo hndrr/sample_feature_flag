@@ -52,7 +52,7 @@ class AboutPage extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  RemoteConfigRepository.featAboutText ?? '',
+                  RemoteConfigRepository.value!.featAboutText!,
                   textScaleFactor: 1,
                 ),
               ],

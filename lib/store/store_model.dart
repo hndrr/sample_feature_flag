@@ -16,20 +16,21 @@ class StoreModel extends ChangeNotifier {
   }
 
   static List<Map<String, dynamic>> jsonItemList = [
-    {'emoji': '💻', 'title': 'Macbook Pro', 'price': '240000'},
-    {'emoji': '🎮', 'title': 'Switch', 'price': '40000'},
-    {'emoji': '💿', 'title': 'CD', 'price': '3000'},
-    {'emoji': '🍛', 'title': 'カレー', 'price': '800'},
-    {'emoji': '🍣', 'title': '寿司', 'price': '4000'},
-    {'emoji': '🍜', 'title': 'ラーメン', 'price': '1000'},
-    {'emoji': '🍔', 'title': 'ハンバーガー', 'price': '300'},
-    {'emoji': '🥩', 'title': '肉', 'price': '4000'},
-    {'emoji': '😄', 'title': 'スマイル', 'price': '0'},
-    {'emoji': '💩', 'title': 'うんち', 'price': '10000'},
+    {'id': '00', 'emoji': '💻', 'title': 'Macbook Pro', 'price': '240000'},
+    {'id': '01', 'emoji': '🎮', 'title': 'Switch', 'price': '40000'},
+    {'id': '02', 'emoji': '💿', 'title': 'CD', 'price': '3000'},
+    {'id': '03', 'emoji': '🍛', 'title': 'カレー', 'price': '800'},
+    {'id': '04', 'emoji': '🍣', 'title': '寿司', 'price': '4000'},
+    {'id': '05', 'emoji': '🍜', 'title': 'ラーメン', 'price': '1000'},
+    {'id': '06', 'emoji': '🍔', 'title': 'ハンバーガー', 'price': '300'},
+    {'id': '07', 'emoji': '🥩', 'title': '肉', 'price': '4000'},
+    {'id': '08', 'emoji': '😄', 'title': 'スマイル', 'price': '0'},
+    {'id': '09', 'emoji': '💩', 'title': 'うんち', 'price': '10000'},
   ];
 
   final List<Item> itemList = jsonItemList
       .map((item) => Item(
+            item['id']!,
             item['emoji']!,
             item['title']!,
             int.parse(item['price']!),
