@@ -31,21 +31,7 @@ class StoreListPage extends StatelessWidget {
             backgroundColor: Colors.amberAccent,
             foregroundColor: Colors.black87,
           ),
-          body:
-              // musicInfos.isEmpty
-              //     ? model.isLoading
-              //         ? Container(
-              //             color: Colors.black.withOpacity(0.1),
-              //             child: const Center(
-              //               child: CircularProgressIndicator(
-              //                 valueColor:
-              //                     AlwaysStoppedAnimation<Color>(Colors.black),
-              //               ),
-              //             ),
-              //           )
-              //         : const SizedBox()
-              //     :
-              GridView.builder(
+          body: GridView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 10)
                 .add(const EdgeInsets.only(top: 20, bottom: 20)),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

@@ -13,8 +13,6 @@ Future<void> main() async {
   await Firebase.initializeApp();
   await RemoteConfigRepository.init();
 
-  debugPrint(RemoteConfigRepository.featAboutText);
-
   runApp(
     MultiProvider(
       providers: <SingleChildWidget>[
