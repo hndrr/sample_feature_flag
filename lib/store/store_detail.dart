@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_feature_flag/domain/item_list.dart';
+import 'package:sample_feature_flag/domain/remote_config_repository.dart';
 import 'package:sample_feature_flag/store/store_model.dart';
 import 'package:twemoji/twemoji.dart';
 
@@ -42,14 +43,13 @@ class StoreDetailPage extends StatelessWidget {
                             color: Colors.grey.withOpacity(0.4),
                           ),
                           child: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
+                              icon: const Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              }),
                         ),
                       ),
                     ),
@@ -116,9 +116,25 @@ class StoreDetailPage extends StatelessWidget {
                     child: Container(
                       margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                       padding: const EdgeInsets.only(bottom: 4),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: const Text('購入'),
+                      child: SizedBox(
+                        height: 50,
+                        child: ElevatedButton(
+                          onPressed: item.id !=
+                                  RemoteConfigRepository
+                                      .value!.featDisablePurchase!
+                              ? () {}
+                              : null,
+                          child: Text(
+                            item.id !=
+                                    RemoteConfigRepository
+                                        .value!.featDisablePurchase!
+                                ? '購入'
+                                : '購入できません',
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red,
+                          ),
+                        ),
                       ),
                     ),
                   ),

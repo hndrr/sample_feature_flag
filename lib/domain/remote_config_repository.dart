@@ -4,8 +4,9 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class RemoteConfigRepository {
   static RemoteConfigRepository? value;
-  bool? featInvisibleStoreTab;
+  bool? featInvisibleTab;
   String? featMailText;
+  String? featDisablePurchase;
   List<Map<String, dynamic>>? featHiddenItem;
   List<Map<String, dynamic>>? featAddItem;
 
@@ -29,10 +30,12 @@ class RemoteConfigRepository {
     // remoteconfigからのfetchとactivateを行う
     await remoteConfig.fetchAndActivate();
     // bool
-    value!.featInvisibleStoreTab =
-        remoteConfig.getBool('feat_invisible_store_tab');
+    value!.featInvisibleTab = remoteConfig.getBool('feat_invisible_tab');
     // String
     value!.featMailText = remoteConfig.getString('feat_mail_text');
+
+    value!.featDisablePurchase =
+        remoteConfig.getString('feat_disable_purchase');
     // Json
     value!.featHiddenItem =
         jsonDecode(remoteConfig.getString('feat_hidden_item'))
