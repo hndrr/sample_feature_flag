@@ -19,6 +19,9 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 # firebase 
+firebaseの設定ファイルは含んでいないので
+各自firebaseの環境を設定後に `GoogleService-Info.plist` `google-services.json` をダウンロードして設定してください
+
 - https://firebase.google.com/docs/flutter/setup?hl=ja&platform=ios
 - https://firebase.google.com/docs/flutter/setup?hl=ja&platform=android
 
