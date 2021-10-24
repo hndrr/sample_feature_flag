@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_feature_flag/domain/remote_config_repository.dart';
 import 'package:twemoji/twemoji.dart';
 
 import 'contact_model.dart';
@@ -50,8 +51,8 @@ class ContactPage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  'hoge@hogehoge.com',
+                Text(
+                  RemoteConfigRepository.value!.featMailText!,
                   textScaleFactor: 1,
                 ),
               ],
