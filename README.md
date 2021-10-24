@@ -5,6 +5,9 @@ Here is an example of Firebase Remote Config in Flutter
 - https://pub.dev/packages/firebase_remote_config
 - https://firebase.flutter.dev/docs/remote-config/overview/
 
+# slide 
+- https://docs.google.com/presentation/d/1Rzf1i6Kq5FWtlaGwG-ISVz_R0WYHZeozOT2sjyphtTc/edit?usp=sharing
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
