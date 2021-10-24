@@ -1,10 +1,18 @@
+import 'dart:convert';
+
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class RemoteConfigRepository {
-  RemoteConfig remoteConfig = RemoteConfig.instance;
+  // static RemoteConfigRepository? master;
+  // RemoteConfigRepository();
+  static bool? featInvisibleStoreTab;
+  static String? featAboutText;
+  static List<Map<String, dynamic>>? featHiddenItem;
 
   // Initialize
-  Future<void> init() async {
+  static Future<void> init() async {
+    // master = RemoteConfigRepository();
+    final remoteConfig = RemoteConfig.instance;
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
       fetchTimeout: const Duration(seconds: 10),
       minimumFetchInterval: const Duration(hours: 1),
@@ -12,9 +20,17 @@ class RemoteConfigRepository {
 
     // デフォルトの値
     await remoteConfig.setDefaults(<String, dynamic>{
-      'welcome': 'default welcome',
-      'hello': 'default hello',
+      'feat_about_text': 'default welcome',
+      'feat_disable_purchase': false,
     });
-    RemoteConfigValue(null, ValueSource.valueStatic);
+
+    await remoteConfig.fetchAndActivate();
+    // bool
+    featInvisibleStoreTab = remoteConfig.getBool('feat_invisible_store_tab');
+    // String
+    featAboutText = remoteConfig.getString('feat_about_text');
+    // Json
+    featHiddenItem = jsonDecode(remoteConfig.getString('feat_hidden_item'))
+        .cast<Map<String, dynamic>>();
   }
 }
