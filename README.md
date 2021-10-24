@@ -1,6 +1,9 @@
 # sample_feature_flag
+Here is an example of Firebase Remote Config in Flutter
 
-A new Flutter project.
+- https://firebase.google.com/docs/remote-config
+- https://pub.dev/packages/firebase_remote_config
+- https://firebase.flutter.dev/docs/remote-config/overview/
 
 ## Getting Started
 
