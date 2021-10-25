@@ -98,7 +98,7 @@ class StoreDetailPage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '価格 : ￥${item.price}',
+                            '価格 : ￥${(item.id == '1a' && remoteConfig.featPriceInt != 0) ? remoteConfig.featPriceInt : item.price}',
                             textScaleFactor: 1,
                             maxLines: 1,
                             style: textTheme.subtitle1,
@@ -121,11 +121,12 @@ class StoreDetailPage extends StatelessWidget {
                       child: SizedBox(
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: item.id != remoteConfig.featDisablePurchase
-                              ? () {}
-                              : null,
+                          onPressed:
+                              item.id != remoteConfig.featDisablePurchaseId
+                                  ? () {}
+                                  : null,
                           child: Text(
-                            item.id != remoteConfig.featDisablePurchase
+                            item.id != remoteConfig.featDisablePurchaseId
                                 ? '購入'
                                 : '購入できません',
                           ),

@@ -12,6 +12,7 @@ import 'store/store_model.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // get_itでInitialize
   await setupService();
   await getIt<RemoteConfigRepository>().init();
 
