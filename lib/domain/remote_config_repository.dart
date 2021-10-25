@@ -4,9 +4,10 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class RemoteConfigRepository {
   RemoteConfigRepository();
-  bool? featInvisibleTab;
+  bool? featIsHiddenTab;
+  int? featPriceInt;
   String? featMailText;
-  String? featDisablePurchase;
+  String? featDisablePurchaseId;
   List<Map<String, dynamic>>? featHiddenItem;
   List<Map<String, dynamic>>? featAddItem;
 
@@ -22,19 +23,21 @@ class RemoteConfigRepository {
     // アプリ内デフォルト値
     await remoteConfig.setDefaults(<String, dynamic>{
       'feat_mail_text': 'hoge@hoge.com',
-      'feat_disable_purchase': false,
+      'feat_disable_purchase_id': false,
       'feat_hidden_item': json.encode([{}]),
-      'featAddItem': json.encode([{}]),
+      'feat_add_item': json.encode([{}]),
     });
     // remoteconfigからのfetchとactivateを行う
     await remoteConfig.fetchAndActivate();
+
     // bool
-    featInvisibleTab = remoteConfig.getBool('feat_invisible_tab');
+    featIsHiddenTab = remoteConfig.getBool('feat_isHidden_tab');
+    // int デフォルト値は0
+    featPriceInt = remoteConfig.getInt('feat_price_int');
     // String
     featMailText = remoteConfig.getString('feat_mail_text');
-
-    featDisablePurchase = remoteConfig.getString('feat_disable_purchase');
-    // Json
+    featDisablePurchaseId = remoteConfig.getString('feat_disable_purchase_id');
+    // JSON
     featHiddenItem = jsonDecode(remoteConfig.getString('feat_hidden_item'))
         .cast<Map<String, dynamic>>();
 

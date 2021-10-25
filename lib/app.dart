@@ -35,7 +35,7 @@ class _AppState extends State<App> {
 
     final _widgetList = <Widget>[
       const StoreListPage(),
-      if (remoteConfig.featInvisibleTab == false) const AboutPage(),
+      if (remoteConfig.featIsHiddenTab == false) const AboutPage(),
       const ContactPage(),
     ];
 
@@ -57,7 +57,7 @@ class _AppState extends State<App> {
           items: <BottomNavigationBarItem>[
             const BottomNavigationBarItem(
                 icon: Icon(Icons.store_mall_directory), label: 'Home'),
-            if (remoteConfig.featInvisibleTab == false)
+            if (remoteConfig.featIsHiddenTab == false)
               const BottomNavigationBarItem(
                   icon: Icon(Icons.person), label: 'About'),
             const BottomNavigationBarItem(

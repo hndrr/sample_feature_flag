@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_feature_flag/domain/get_it_service.dart';
 import 'package:sample_feature_flag/domain/item_list.dart';
+import 'package:sample_feature_flag/domain/remote_config_repository.dart';
 import 'package:sample_feature_flag/store/store_detail.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:twemoji/twemoji.dart';
@@ -10,10 +12,7 @@ import 'store_model.dart';
 class StoreListPage extends StatelessWidget {
   const StoreListPage({
     Key? key,
-    this.artist,
   }) : super(key: key);
-
-  final String? artist;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +22,7 @@ class StoreListPage extends StatelessWidget {
         StoreModel model,
         Widget? child,
       ) {
+        RemoteConfigRepository remoteConfig = getIt<RemoteConfigRepository>();
         final List<Item> itemList = model.itemList;
         final double width = MediaQuery.of(context).size.width;
 
@@ -74,7 +74,7 @@ class StoreListPage extends StatelessWidget {
                         textScaleFactor: 1,
                       ),
                       Text(
-                        '価格 : ￥${item.price}',
+                        '価格 : ￥${(item.id == '1a' && remoteConfig.featPriceInt != 0) ? remoteConfig.featPriceInt : item.price}',
                         textScaleFactor: 1,
                       ),
                     ],
