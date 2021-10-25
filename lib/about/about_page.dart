@@ -38,30 +38,30 @@ class AboutPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Container(
-                    margin: const EdgeInsets.symmetric(vertical: 60),
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    height: 180,
-                    width: width,
-                    child: const Twemoji(
-                      emoji: '👾',
-                    )),
-                const Text('うんたら',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  'かんたら',
-                  textScaleFactor: 1,
+                  margin: const EdgeInsets.symmetric(vertical: 60),
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 180,
+                  width: width,
+                  child: const Twemoji(
+                    emoji: '👾',
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 Text(
-                  remoteConfig.featPlatform!,
+                  remoteConfig.featPlatform ?? 'うんたら',
+                  textScaleFactor: 1,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  remoteConfig.featCountry ?? 'かんたら',
                   textScaleFactor: 1,
                 ),
               ],
