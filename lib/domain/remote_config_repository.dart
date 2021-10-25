@@ -8,6 +8,7 @@ class RemoteConfigRepository {
   int? featPriceInt;
   String? featMailText;
   String? featDisablePurchaseId;
+  String? featPlatform;
   List<Map<String, dynamic>>? featHiddenItem;
   List<Map<String, dynamic>>? featAddItem;
 
@@ -37,6 +38,8 @@ class RemoteConfigRepository {
     // String
     featMailText = remoteConfig.getString('feat_mail_text');
     featDisablePurchaseId = remoteConfig.getString('feat_disable_purchase_id');
+    featPlatform = remoteConfig.getString('feat_platform');
+
     // JSON
     featHiddenItem = jsonDecode(remoteConfig.getString('feat_hidden_item'))
         .cast<Map<String, dynamic>>();
