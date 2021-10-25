@@ -54,7 +54,7 @@ class ContactPage extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  remoteConfig.featMailText ?? '',
+                  remoteConfig.featMailText!,
                   textScaleFactor: 1,
                 ),
               ],
