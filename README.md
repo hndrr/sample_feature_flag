@@ -28,6 +28,9 @@ firebaseの設定ファイルは含んでいないので
 - https://firebase.google.com/docs/flutter/setup?hl=ja&platform=ios
 - https://firebase.google.com/docs/flutter/setup?hl=ja&platform=android
 
+<img width="1406" alt="Screen Shot 2021-10-26 at 1 45 38" src="https://user-images.githubusercontent.com/53109993/138872385-2378e7e2-12a0-4d2e-aff1-8abbd0370ed9.png">
+
+
 # android
 
 1. keystore作成
