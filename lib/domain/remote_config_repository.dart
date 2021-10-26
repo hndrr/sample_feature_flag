@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 class RemoteConfigRepository {
   RemoteConfigRepository();
   bool? featIsHiddenTab;
+  Version? featUpdateVersion;
   int? featPriceInt;
   String? featMailText;
   String? featDisablePurchaseId;
@@ -28,6 +30,7 @@ class RemoteConfigRepository {
       'feat_disable_purchase_id': false,
       'feat_hidden_item': json.encode([{}]),
       'feat_add_item': json.encode([{}]),
+      'featUpdateVersion': '1.0.0'
     });
     // remoteconfigからのfetchとactivateを行う
     await remoteConfig.fetchAndActivate();
@@ -41,12 +44,15 @@ class RemoteConfigRepository {
     featDisablePurchaseId = remoteConfig.getString('feat_disable_purchase_id');
     featPlatform = remoteConfig.getString('feat_platform');
     featCountry = remoteConfig.getString('feat_country');
-
     // JSON
     featHiddenItem = jsonDecode(remoteConfig.getString('feat_hidden_item'))
         .cast<Map<String, dynamic>>();
 
     featAddItem = jsonDecode(remoteConfig.getString('feat_add_item'))
         .cast<Map<String, dynamic>>();
+
+    // Version
+    featUpdateVersion =
+        Version.parse(remoteConfig.getString('feat_update_version'));
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_feature_flag/domain/get_it_service.dart';
 import 'package:sample_feature_flag/domain/item_list.dart';
+import 'package:sample_feature_flag/domain/package_info_repository.dart';
 import 'package:sample_feature_flag/domain/remote_config_repository.dart';
 import 'package:sample_feature_flag/store/store_detail.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
@@ -16,13 +17,22 @@ class StoreListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RemoteConfigRepository remoteConfig = getIt<RemoteConfigRepository>();
+    PackageInfoRepository packageInfo = getIt<PackageInfoRepository>();
+
+    // Build時にVersionチェック
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      if (remoteConfig.featUpdateVersion! > packageInfo.currentVersion!) {
+        _showUpdateDialog(context);
+      }
+    });
+
     return Consumer<StoreModel>(
       builder: (
         BuildContext context,
         StoreModel model,
         Widget? child,
       ) {
-        RemoteConfigRepository remoteConfig = getIt<RemoteConfigRepository>();
         final List<Item> itemList = model.itemList;
         final double width = MediaQuery.of(context).size.width;
 
@@ -92,6 +102,25 @@ class StoreListPage extends StatelessWidget {
               );
             },
           ),
+        );
+      },
+    );
+  }
+
+  void _showUpdateDialog(context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("新しいバージョンがリリースされました"),
+          content: const Text('ストアからアップデートしてください'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
         );
       },
     );
