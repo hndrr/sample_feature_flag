@@ -19,6 +19,14 @@ class StoreModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool _firstLaunch = true;
+  bool get firstLaunch => _firstLaunch;
+
+  set firstLaunch(bool val) {
+    _firstLaunch = val;
+    notifyListeners();
+  }
+
   static List<Map<String, dynamic>> jsonItemList = [
     {'id': '1a', 'emoji': '💻', 'title': 'Macbook Pro', 'price': '240000'},
     {'id': '1b', 'emoji': '🎮', 'title': 'Switch', 'price': '40000'},

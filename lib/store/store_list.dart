@@ -20,13 +20,6 @@ class StoreListPage extends StatelessWidget {
     RemoteConfigRepository remoteConfig = getIt<RemoteConfigRepository>();
     PackageInfoRepository packageInfo = getIt<PackageInfoRepository>();
 
-    // Build時にVersionチェック
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      if (remoteConfig.featUpdateVersion! > packageInfo.currentVersion!) {
-        _showUpdateDialog(context);
-      }
-    });
-
     return Consumer<StoreModel>(
       builder: (
         BuildContext context,
@@ -35,6 +28,16 @@ class StoreListPage extends StatelessWidget {
       ) {
         final List<Item> itemList = model.itemList;
         final double width = MediaQuery.of(context).size.width;
+
+        // Build時にVersionチェック
+        WidgetsBinding.instance!.addPostFrameCallback((_) {
+          if (remoteConfig.featUpdateVersion! > packageInfo.currentVersion! &&
+              model.firstLaunch) {
+            // 2回目以降はfalseになる
+            model.firstLaunch = false;
+            _showUpdateDialog(context);
+          }
+        });
 
         return Scaffold(
           appBar: AppBar(
