@@ -5,6 +5,7 @@ import 'package:pub_semver/pub_semver.dart';
 
 class RemoteConfigRepository {
   RemoteConfigRepository();
+
   bool? featIsHiddenTab;
   Version? featUpdateVersion;
   int? featPriceInt;
@@ -28,15 +29,18 @@ class RemoteConfigRepository {
     await remoteConfig.setDefaults(<String, dynamic>{
       'feat_mail_text': 'hoge@hoge.com',
       'feat_disable_purchase_id': false,
-      'feat_hidden_item': json.encode([{}]),
+      'feat_hidden_item': json.encode([
+        {"id": ""},
+        {"emoji": ""}
+      ]),
       'feat_add_item': json.encode([{}]),
-      'featUpdateVersion': '1.0.0'
+      'feat_update_version': '1.0.0'
     });
     // remoteconfigからのfetchとactivateを行う
     await remoteConfig.fetchAndActivate();
 
     // bool
-    featIsHiddenTab = remoteConfig.getBool('feat_isHidden_tab');
+    featIsHiddenTab = remoteConfig.getBool('feat_is_hidden_tab');
     // int デフォルト値は0
     featPriceInt = remoteConfig.getInt('feat_price_int');
     // String

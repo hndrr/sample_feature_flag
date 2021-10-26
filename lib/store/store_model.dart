@@ -29,7 +29,7 @@ class StoreModel extends ChangeNotifier {
 
   static List<Map<String, dynamic>> jsonItemList = [
     {'id': '1a', 'emoji': '💻', 'title': 'Macbook Pro', 'price': '240000'},
-    {'id': '1b', 'emoji': '🎮', 'title': 'Switch', 'price': '40000'},
+    {'id': '1b', 'emoji': '🎮', 'title': 'Switch', 'price': '38000'},
     {'id': '1c', 'emoji': '💿', 'title': 'CD', 'price': '3000'},
     {'id': '1d', 'emoji': '🍛', 'title': 'カレー', 'price': '800'},
     {'id': '1e', 'emoji': '🍣', 'title': '寿司', 'price': '4000'},
@@ -41,9 +41,10 @@ class StoreModel extends ChangeNotifier {
   ];
 
   // RemoteConfigのJson
+  // [{"id":"09","emoji":"💩","title":"うんち","price":"10000","visible":false}]
   static List<Map<String, dynamic>> featAddItem = remoteConfig.featAddItem!;
 
-  final List<Item> itemList = jsonItemList // (jsonItemList + featAddItem)
+  final List<Item> itemList = (jsonItemList + featAddItem)
       .map((item) => Item(
             item['id']!,
             item['emoji']!,
@@ -51,7 +52,8 @@ class StoreModel extends ChangeNotifier {
             int.parse(item['price']!),
           ))
       // RemoteConfigのJsonで指定したものを非表示
-      // .where((item) => item.id != remoteConfig.featHiddenItem![0]["id"])
-      // .where((item) => item.emoji != remoteConfig.featHiddenItem![1]["emoji"])
+      // [{"id":"1c"},{"id":"1d","emoji":"🍛","title": "カレー"}]
+      .where((item) => item.id != remoteConfig.featHiddenItem![0]["id"])
+      .where((item) => item.emoji != remoteConfig.featHiddenItem![1]["emoji"])
       .toList();
 }
