@@ -40,6 +40,8 @@ flutter:
 flutter_icons:
   android: "launcher_icon"
   ios: true
+  remove_alpha_ios: true
   image_path: "assets/app_icon.png"
+  image_path_ios: "assets/app_icon_ios.png"
   adaptive_icon_background: "#FFD740"
   adaptive_icon_foreground: "assets/app_icon.png"
