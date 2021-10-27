@@ -2,7 +2,7 @@
     package="com.sample_feature_flag">
    <application
         android:label="sample_feature_flag"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
