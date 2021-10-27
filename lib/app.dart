@@ -29,6 +29,10 @@ class _AppState extends State<App> {
     });
   }
 
+  Future<void> _onRefresh() async {
+    await remoteConfig.init();
+  }
+
   @override
   Widget build(BuildContext context) {
     const Locale locale = Locale('ja', 'JP');
@@ -67,6 +71,13 @@ class _AppState extends State<App> {
           fixedColor: Colors.blueAccent,
           onTap: _onItemTapped,
           type: BottomNavigationBarType.fixed,
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.amber.shade800,
+          foregroundColor: Colors.black87,
+          onPressed: _onRefresh,
+          tooltip: 'Init',
+          child: const Icon(Icons.insert_emoticon),
         ),
       ),
     );
