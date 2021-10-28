@@ -1,5 +1,6 @@
 # sample_feature_flag
 Here is an example of Firebase Remote Config in Flutter
+
 This app is a joke application that mimics an e-commerce site that I created to explain the remote configuration feature of Firebase!
 
 - https://firebase.google.com/docs/remote-config
